@@ -79,7 +79,7 @@ public class ItemYetaWrench extends Item implements ITool, IConduitControl, IAdv
         return false;
       }
       if (player.isSneaking() && block instanceof IDismantleable && ((IDismantleable) block).canDismantle(player, world, x, y, z)) {
-        if (!world.isRemote) {
+        if (!world.isRemote && e.useBlock == !Result.DENY && e.getResult() == !Result.DENY && e.useItem == Result.DENY && !e.isCancelled()) {
           ((IDismantleable) block).dismantleBlock(player, world, x, y, z, false);
         }
         ret = true;
